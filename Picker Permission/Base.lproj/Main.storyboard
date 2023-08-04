@@ -100,10 +100,39 @@
                     <view key="view" contentMode="scaleToFill" id="z0j-sh-AVS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Permission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZq-st-ArH">
+                                <rect key="frame" x="113.00000000000001" y="122.99999999999999" width="167.33333333333337" height="19.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bh8-qs-5nG">
+                                <rect key="frame" x="96.666666666666686" y="162.33333333333334" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="gKT-5f-LCj"/>
+                                    <constraint firstAttribute="height" constant="40" id="ipL-H0-BZ6"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Local Notification"/>
+                                <connections>
+                                    <action selector="clickLocalNotification:" destination="sJ6-AA-dtf" eventType="touchUpInside" id="YhL-ld-d7q"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="lC9-4H-LG6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iZq-st-ArH" firstAttribute="centerX" secondItem="z0j-sh-AVS" secondAttribute="centerX" id="1Pl-uF-DeT"/>
+                            <constraint firstItem="Bh8-qs-5nG" firstAttribute="top" secondItem="iZq-st-ArH" secondAttribute="bottom" constant="20" id="8NO-h5-XTS"/>
+                            <constraint firstItem="iZq-st-ArH" firstAttribute="top" secondItem="lC9-4H-LG6" secondAttribute="top" constant="20" id="LlR-X6-fCh"/>
+                            <constraint firstItem="Bh8-qs-5nG" firstAttribute="centerX" secondItem="z0j-sh-AVS" secondAttribute="centerX" id="sMN-3I-k2M"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mwr-u4-ZwU"/>
+                    <connections>
+                        <outlet property="labelPermission" destination="iZq-st-ArH" id="ONn-HX-IGl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AwG-YR-jUX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
