@@ -27,6 +27,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Gallery"/>
+                                        <connections>
+                                            <action selector="clickGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tk1-98-RGC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5mW-WO-8Lq">
                                         <rect key="frame" x="0.0" y="50" width="200" height="40"/>
@@ -35,6 +38,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Camera"/>
+                                        <connections>
+                                            <action selector="clickCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NGn-GO-gqg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAr-aU-tMf">
                                         <rect key="frame" x="0.0" y="100" width="200" height="40"/>
@@ -43,6 +49,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="File"/>
+                                        <connections>
+                                            <action selector="clickFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WqU-w1-JYG"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kP1-BI-wh3">
                                         <rect key="frame" x="0.0" y="150" width="200" height="40"/>
@@ -51,6 +60,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Location"/>
+                                        <connections>
+                                            <action selector="clickLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2HO-Dx-r9Y"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQ4-sp-Qwe">
                                         <rect key="frame" x="0.0" y="200" width="200" height="40"/>
@@ -59,6 +71,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Record Audio"/>
+                                        <connections>
+                                            <action selector="clickRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v4G-7M-Dxg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6h-xc-TXV">
                                         <rect key="frame" x="0.0" y="250" width="200" height="40"/>
@@ -87,11 +102,32 @@
                     <navigationItem key="navigationItem" id="dVr-Qu-uUa"/>
                     <connections>
                         <segue destination="sJ6-AA-dtf" kind="show" identifier="HomeToNotification" id="BVP-Qj-ks8"/>
+                        <segue destination="B4H-iy-QHG" kind="show" identifier="HomeToGallery" id="bxr-Qd-1qR"/>
+                        <segue destination="BSd-JK-I9d" kind="show" identifier="HomeToCamera" id="l6h-eI-eft"/>
+                        <segue destination="Kxi-52-ss2" kind="show" identifier="HomeToFile" id="COT-EW-u8z"/>
+                        <segue destination="JxY-CD-Zkw" kind="show" identifier="HomeToLocation" id="6Io-f0-nb9"/>
+                        <segue destination="dSz-GO-VIB" kind="show" identifier="HomeToRecord" id="8Xi-bw-Yne"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1057.2519083969464" y="-27.464788732394368"/>
+        </scene>
+        <!--File View Controller-->
+        <scene sceneID="WEJ-ES-75m">
+            <objects>
+                <viewController id="Kxi-52-ss2" customClass="FileViewController" customModule="Picker_Permission" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7eW-3K-TYs">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="A4b-nQ-H4w"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nnb-M2-yD8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ceC-VL-pfc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111" y="768"/>
         </scene>
         <!--Notification View Controller-->
         <scene sceneID="M0S-qe-TBL">
@@ -136,7 +172,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AwG-YR-jUX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1874" y="-27"/>
+            <point key="canvasLocation" x="3065" y="768"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="gmX-OJ-CIe">
+            <objects>
+                <viewController id="BSd-JK-I9d" customClass="CameraViewController" customModule="Picker_Permission" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xFy-Wa-Cnh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zJI-Ta-iSs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="klV-js-1zV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="32w-HX-hTI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111" y="-27"/>
+        </scene>
+        <!--Record View Controller-->
+        <scene sceneID="1fG-Lx-gUz">
+            <objects>
+                <viewController id="dSz-GO-VIB" customClass="RecordViewController" customModule="Picker_Permission" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kuS-PW-xmn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Let-0e-gjl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GeH-X6-kvz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Og-I5-ksF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3065" y="-27"/>
+        </scene>
+        <!--Gallery View Controller-->
+        <scene sceneID="9eu-8s-MHK">
+            <objects>
+                <viewController id="B4H-iy-QHG" customClass="GalleryViewController" customModule="Picker_Permission" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bTq-g1-Imo">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="X3V-E3-CHh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="H5G-5i-J8Q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdb-9m-nbn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111" y="-738"/>
+        </scene>
+        <!--Location View Controller-->
+        <scene sceneID="0s8-cu-ggT">
+            <objects>
+                <viewController id="JxY-CD-Zkw" customClass="LocationViewController" customModule="Picker_Permission" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gx6-wX-sa4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Aqo-Tc-ws5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gIg-P9-FTI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KMW-iW-JJo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3065" y="-738"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AOq-hA-EQc">

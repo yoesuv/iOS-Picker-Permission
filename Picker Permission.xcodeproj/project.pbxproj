@@ -14,6 +14,11 @@
 		AB013B742A7CFE5C00F5EB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB013B732A7CFE5C00F5EB38 /* Assets.xcassets */; };
 		AB013B772A7CFE5C00F5EB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB013B752A7CFE5C00F5EB38 /* LaunchScreen.storyboard */; };
 		AB5473182A7D029200068E7F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5473172A7D029200068E7F /* NotificationViewController.swift */; };
+		AB8CAEC32A7D3C1000C9CCF8 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CAEC22A7D3C1000C9CCF8 /* GalleryViewController.swift */; };
+		AB8CAEC52A7D3D7B00C9CCF8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CAEC42A7D3D7B00C9CCF8 /* CameraViewController.swift */; };
+		AB8CAEC72A7D3E3600C9CCF8 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CAEC62A7D3E3600C9CCF8 /* FileViewController.swift */; };
+		AB8CAEC92A7D3EDD00C9CCF8 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CAEC82A7D3EDD00C9CCF8 /* LocationViewController.swift */; };
+		AB8CAECB2A7D3FAA00C9CCF8 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CAECA2A7D3FAA00C9CCF8 /* RecordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		AB013B762A7CFE5C00F5EB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB013B782A7CFE5C00F5EB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB5473172A7D029200068E7F /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		AB8CAEC22A7D3C1000C9CCF8 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		AB8CAEC42A7D3D7B00C9CCF8 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		AB8CAEC62A7D3E3600C9CCF8 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
+		AB8CAEC82A7D3EDD00C9CCF8 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		AB8CAECA2A7D3FAA00C9CCF8 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +76,11 @@
 				AB013B752A7CFE5C00F5EB38 /* LaunchScreen.storyboard */,
 				AB013B782A7CFE5C00F5EB38 /* Info.plist */,
 				AB5473172A7D029200068E7F /* NotificationViewController.swift */,
+				AB8CAEC22A7D3C1000C9CCF8 /* GalleryViewController.swift */,
+				AB8CAEC42A7D3D7B00C9CCF8 /* CameraViewController.swift */,
+				AB8CAEC62A7D3E3600C9CCF8 /* FileViewController.swift */,
+				AB8CAEC82A7D3EDD00C9CCF8 /* LocationViewController.swift */,
+				AB8CAECA2A7D3FAA00C9CCF8 /* RecordViewController.swift */,
 			);
 			path = "Picker Permission";
 			sourceTree = "<group>";
@@ -143,8 +158,13 @@
 			files = (
 				AB013B6F2A7CFE5B00F5EB38 /* HomeViewController.swift in Sources */,
 				AB013B6B2A7CFE5B00F5EB38 /* AppDelegate.swift in Sources */,
+				AB8CAEC32A7D3C1000C9CCF8 /* GalleryViewController.swift in Sources */,
+				AB8CAECB2A7D3FAA00C9CCF8 /* RecordViewController.swift in Sources */,
 				AB5473182A7D029200068E7F /* NotificationViewController.swift in Sources */,
 				AB013B6D2A7CFE5B00F5EB38 /* SceneDelegate.swift in Sources */,
+				AB8CAEC52A7D3D7B00C9CCF8 /* CameraViewController.swift in Sources */,
+				AB8CAEC72A7D3E3600C9CCF8 /* FileViewController.swift in Sources */,
+				AB8CAEC92A7D3EDD00C9CCF8 /* LocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
