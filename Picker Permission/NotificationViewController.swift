@@ -116,8 +116,9 @@ class NotificationViewController: UIViewController, UNUserNotificationCenterDele
         content.body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         content.sound = .default
         
-        let twoMin: TimeInterval = 2 * 60
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: twoMin , repeats: false)
+        let theDate = Date().adding(minutes: 2)
+        let triggerDate = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: theDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate , repeats: false)
         
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
     
@@ -146,5 +147,11 @@ extension UNAuthorizationStatus : CustomStringConvertible {
         default:
             return "Unknown value \(rawValue)"
         }
+    }
+}
+
+extension Date {
+    func adding(minutes: Int) -> Date {
+        return Calendar.current.date(byAdding: .minute, value: minutes, to: self)!
     }
 }
