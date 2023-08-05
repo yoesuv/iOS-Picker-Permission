@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class NotificationViewController: UIViewController {
+class NotificationViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     @IBOutlet weak var labelPermission: UILabel!
     
@@ -26,7 +26,7 @@ class NotificationViewController: UIViewController {
             switch setting.authorizationStatus {
             case .notDetermined:
                 print("not determined")
-                self.notification.requestAuthorization(options: [.sound, .alert]) { isAllow, error in
+                self.notification.requestAuthorization(options: [.sound, .alert, .badge]) { isAllow, error in
                     self.showPermissionStatus()
                     if (isAllow) {
                         self.showNotification()
@@ -61,7 +61,23 @@ class NotificationViewController: UIViewController {
     }
     
     private func showNotification() {
-        print("NotificationViewController # showNotification")
+        let identifier = "local_notification"
+        let content = UNMutableNotificationContent()
+        content.title = "Local Notification"
+        content.body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content.sound = .default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+    
+        notification.removeDeliveredNotifications(withIdentifiers: [identifier])
+        notification.add(request) { error in
+            if let err = error {
+                print(err)
+            }
+        }
+        
     }
 }
 
