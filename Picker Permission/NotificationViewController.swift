@@ -51,6 +51,36 @@ class NotificationViewController: UIViewController, UNUserNotificationCenterDele
     }
     
     
+    
+    @IBAction func clickScheduleNotification(_ sender: UIButton) {
+        notification.getNotificationSettings { setting in
+            switch setting.authorizationStatus {
+            case .notDetermined:
+                print("not determined")
+                self.notification.requestAuthorization(options: [.sound, .alert, .badge]) { isAllow, error in
+                    self.showPermissionStatus()
+                    if (isAllow) {
+                        self.showScheduledNotification()
+                    }
+                }
+            case .denied:
+                print("denied")
+                self.showPermissionStatus()
+            case .authorized:
+                print("authorized")
+                self.showPermissionStatus()
+                self.showScheduledNotification()
+            case .provisional:
+                self.showPermissionStatus()
+                print("provisional")
+            default:
+                self.showPermissionStatus()
+                print("default")
+                return
+            }
+        }
+    }
+    
     private func showPermissionStatus() {
         notification.getNotificationSettings { setting in
             let desc = setting.authorizationStatus.description
@@ -77,7 +107,26 @@ class NotificationViewController: UIViewController, UNUserNotificationCenterDele
                 print(err)
             }
         }
+    }
+    
+    private func showScheduledNotification() {
+        let identifier = "scheduled_notification"
+        let content = UNMutableNotificationContent()
+        content.title = "Scheduled Notification"
+        content.body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content.sound = .default
         
+        let twoMin: TimeInterval = 2 * 60
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: twoMin , repeats: false)
+        
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+    
+        notification.removeDeliveredNotifications(withIdentifiers: [identifier])
+        notification.add(request) { error in
+            if let err = error {
+                print(err)
+            }
+        }
     }
 }
 
