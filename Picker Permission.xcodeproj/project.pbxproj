@@ -19,6 +19,7 @@
 		AB8CAEC72A7D3E3600C9CCF8 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CAEC62A7D3E3600C9CCF8 /* FileViewController.swift */; };
 		AB8CAEC92A7D3EDD00C9CCF8 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CAEC82A7D3EDD00C9CCF8 /* LocationViewController.swift */; };
 		AB8CAECB2A7D3FAA00C9CCF8 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CAECA2A7D3FAA00C9CCF8 /* RecordViewController.swift */; };
+		ABB3643E2A7F1D86001F4AA2 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB3643D2A7F1D86001F4AA2 /* NotificationHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		AB8CAEC62A7D3E3600C9CCF8 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		AB8CAEC82A7D3EDD00C9CCF8 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		AB8CAECA2A7D3FAA00C9CCF8 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		ABB3643D2A7F1D86001F4AA2 /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		AB013B692A7CFE5B00F5EB38 /* Picker Permission */ = {
 			isa = PBXGroup;
 			children = (
+				ABB3643C2A7F1D5E001F4AA2 /* Utils */,
 				AB013B6A2A7CFE5B00F5EB38 /* AppDelegate.swift */,
 				AB013B6C2A7CFE5B00F5EB38 /* SceneDelegate.swift */,
 				AB013B6E2A7CFE5B00F5EB38 /* HomeViewController.swift */,
@@ -83,6 +86,14 @@
 				AB8CAECA2A7D3FAA00C9CCF8 /* RecordViewController.swift */,
 			);
 			path = "Picker Permission";
+			sourceTree = "<group>";
+		};
+		ABB3643C2A7F1D5E001F4AA2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				ABB3643D2A7F1D86001F4AA2 /* NotificationHelper.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +173,7 @@
 				AB8CAECB2A7D3FAA00C9CCF8 /* RecordViewController.swift in Sources */,
 				AB5473182A7D029200068E7F /* NotificationViewController.swift in Sources */,
 				AB013B6D2A7CFE5B00F5EB38 /* SceneDelegate.swift in Sources */,
+				ABB3643E2A7F1D86001F4AA2 /* NotificationHelper.swift in Sources */,
 				AB8CAEC52A7D3D7B00C9CCF8 /* CameraViewController.swift in Sources */,
 				AB8CAEC72A7D3E3600C9CCF8 /* FileViewController.swift in Sources */,
 				AB8CAEC92A7D3EDD00C9CCF8 /* LocationViewController.swift in Sources */,

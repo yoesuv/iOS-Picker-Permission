@@ -131,25 +131,6 @@ class NotificationViewController: UIViewController, UNUserNotificationCenterDele
     }
 }
 
-extension UNAuthorizationStatus : CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .notDetermined:
-            return "Not Determined"
-        case .denied:
-            return "Denied"
-        case .authorized:
-            return "Authorized"
-        case .provisional:
-            return "Provisional"
-        case .ephemeral:
-            return "Ephemeral"
-        default:
-            return "Unknown value \(rawValue)"
-        }
-    }
-}
-
 extension Date {
     func adding(minutes: Int) -> Date {
         return Calendar.current.date(byAdding: .minute, value: minutes, to: self)!
