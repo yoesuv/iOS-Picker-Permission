@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MobileCoreServices
+import UniformTypeIdentifiers
 
 class FileViewController: UIViewController {
     
@@ -18,7 +20,29 @@ class FileViewController: UIViewController {
     }
     
     @IBAction func clickOpenFile(_ sender: UIButton) {
-        
+        let supportedTypes = [UTType.data, UTType.pdf, UTType.audio, UTType.video]
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes, asCopy: true)
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        documentPicker.shouldShowFileExtensions = true
+        present(documentPicker, animated: true, completion: nil)
+    }
+    
+}
+
+extension FileViewController: UIDocumentPickerDelegate {
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        if let url = urls.first {
+            DispatchQueue.main.async {
+                self.labelFilePath.text = url.absoluteString
+            }
+        }
+        controller.dismiss(animated: true)
+    }
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        controller.dismiss(animated: true)
     }
     
 }
