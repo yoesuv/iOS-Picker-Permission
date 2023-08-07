@@ -314,10 +314,39 @@
                     <view key="view" contentMode="scaleToFill" id="gx6-wX-sa4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0m-Hk-Oj2">
+                                <rect key="frame" x="173" y="123" width="47" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbn-W8-2aT">
+                                <rect key="frame" x="96.666666666666686" y="164" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3Pf-47-RG0"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="PZt-Lg-Z9B"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Get Location"/>
+                                <connections>
+                                    <action selector="clickGetLocation:" destination="JxY-CD-Zkw" eventType="touchUpInside" id="Xd3-sZ-76b"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Aqo-Tc-ws5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a0m-Hk-Oj2" firstAttribute="centerX" secondItem="gx6-wX-sa4" secondAttribute="centerX" id="M5p-wX-Jsp"/>
+                            <constraint firstItem="a0m-Hk-Oj2" firstAttribute="top" secondItem="Aqo-Tc-ws5" secondAttribute="top" constant="20" id="Xjl-2T-sGo"/>
+                            <constraint firstItem="Zbn-W8-2aT" firstAttribute="centerX" secondItem="gx6-wX-sa4" secondAttribute="centerX" id="lVo-nD-vhz"/>
+                            <constraint firstItem="Zbn-W8-2aT" firstAttribute="top" secondItem="a0m-Hk-Oj2" secondAttribute="bottom" constant="20" id="qG8-Ee-8CR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gIg-P9-FTI"/>
+                    <connections>
+                        <outlet property="labelLatLng" destination="a0m-Hk-Oj2" id="6iC-mx-CN9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMW-iW-JJo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
