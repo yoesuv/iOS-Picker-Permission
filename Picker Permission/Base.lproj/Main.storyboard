@@ -226,10 +226,50 @@
                     <view key="view" contentMode="scaleToFill" id="xFy-Wa-Cnh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="arB-S6-HeP">
+                                <rect key="frame" x="10" y="113" width="373" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="N0e-xB-Xza"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbd-4u-nW0">
+                                <rect key="frame" x="10" y="323" width="373" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHA-TQ-0b8">
+                                <rect key="frame" x="96.666666666666686" y="363.33333333333331" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bZY-r0-LDT"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="rWH-8R-ivB"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Open Camera"/>
+                                <connections>
+                                    <action selector="clickOpenCamera:" destination="BSd-JK-I9d" eventType="touchUpInside" id="Xwn-h4-kIK"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="zJI-Ta-iSs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xbd-4u-nW0" firstAttribute="leading" secondItem="zJI-Ta-iSs" secondAttribute="leading" constant="10" id="1pT-8y-1Xn"/>
+                            <constraint firstItem="xHA-TQ-0b8" firstAttribute="top" secondItem="xbd-4u-nW0" secondAttribute="bottom" constant="20" id="AuD-AJ-Fr8"/>
+                            <constraint firstItem="zJI-Ta-iSs" firstAttribute="trailing" secondItem="arB-S6-HeP" secondAttribute="trailing" constant="10" id="O8z-lq-hh7"/>
+                            <constraint firstItem="zJI-Ta-iSs" firstAttribute="trailing" secondItem="xbd-4u-nW0" secondAttribute="trailing" constant="10" id="UI7-B2-n9o"/>
+                            <constraint firstItem="xHA-TQ-0b8" firstAttribute="centerX" secondItem="xFy-Wa-Cnh" secondAttribute="centerX" id="Xct-EQ-o24"/>
+                            <constraint firstItem="arB-S6-HeP" firstAttribute="leading" secondItem="zJI-Ta-iSs" secondAttribute="leading" constant="10" id="ehc-9I-10c"/>
+                            <constraint firstItem="arB-S6-HeP" firstAttribute="top" secondItem="zJI-Ta-iSs" secondAttribute="top" constant="10" id="iqh-bG-SeX"/>
+                            <constraint firstItem="xbd-4u-nW0" firstAttribute="top" secondItem="arB-S6-HeP" secondAttribute="bottom" constant="10" id="zWf-rp-kD4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="klV-js-1zV"/>
+                    <connections>
+                        <outlet property="imageViewCamera" destination="arB-S6-HeP" id="7VK-ta-GE3"/>
+                        <outlet property="labelCameraPath" destination="xbd-4u-nW0" id="WM8-uf-khy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32w-HX-hTI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
