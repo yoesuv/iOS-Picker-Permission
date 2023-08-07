@@ -22,9 +22,7 @@ class CameraViewController: UIViewController {
     @IBAction func clickOpenCamera(_ sender: UIButton) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .notDetermined:
-            print("Not Determined")
             AVCaptureDevice.requestAccess(for: .video) { access in
-                print("CameraViewController # access \(access)")
                 if access {
                     self.openCamera()
                 }
@@ -41,7 +39,9 @@ class CameraViewController: UIViewController {
     }
     
     private func openCamera() {
-        print("CameraViewController # open camera")
+        let alert = UIAlertController(title: "CAMERA", message: "Under Construction", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
     }
     
 }
