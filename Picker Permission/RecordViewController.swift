@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class RecordViewController: UIViewController {
     
@@ -19,11 +20,28 @@ class RecordViewController: UIViewController {
     
     
     @IBAction func onClickStart(_ sender: UIButton) {
-        print("RecordViewController # click START")
+        switch AVCaptureDevice.authorizationStatus(for: .audio) {
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .audio) { access in
+                if access {
+                    self.startOrPauseRecording()
+                }
+            }
+        case .authorized:
+            self.startOrPauseRecording()
+        case .restricted, .denied:
+            print("RecordViewController # Restricted or Denied")
+        default:
+            print("RecordViewController # Default")
+        }
     }
     
     @IBAction func onClickStop(_ sender: UIButton) {
         print("RecordViewController # click STOP")
+    }
+    
+    private func startOrPauseRecording() {
+        print("RecordViewController # Start or Pause Recording")
     }
     
 }

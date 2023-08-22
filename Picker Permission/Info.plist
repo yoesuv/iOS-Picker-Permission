@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>open camera </string>
+	<string>recording audio file</string>
 	<key>NSCameraUsageDescription</key>
 	<string>take photo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
