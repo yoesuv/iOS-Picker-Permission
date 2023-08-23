@@ -12,6 +12,8 @@ class RecordViewController: UIViewController {
     
     @IBOutlet weak var labelRecordingState: UILabel!
     @IBOutlet weak var labelRunning: UILabel!
+    @IBOutlet weak var labelTotalDuration: UILabel!
+    @IBOutlet weak var buttonPlayer: UIButton!
     
     private var recordingSession: AVAudioSession!
     private var audioRecorder: AVAudioRecorder!
@@ -22,6 +24,9 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Record Audio"
+        
+        self.labelTotalDuration.isHidden = true
+        self.buttonPlayer.isHidden = true
     }
     
     
@@ -45,6 +50,10 @@ class RecordViewController: UIViewController {
     @IBAction func onClickStop(_ sender: UIButton) {
         self.audioRecorder.stop()
         self.audioRecorder = nil
+    }
+    
+    @IBAction func onClickPlayer(_ sender: UIButton) {
+        
     }
     
     private func startOrPauseRecording() {
@@ -74,6 +83,8 @@ extension RecordViewController: AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
+            self.labelTotalDuration.isHidden = false
+            self.buttonPlayer.isHidden = false
             do {
                 try player = AVAudioPlayer(contentsOf: audioFileName, fileTypeHint: AVFileType.m4a.rawValue)
                 player.play()

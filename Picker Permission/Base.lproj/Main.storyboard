@@ -319,24 +319,44 @@
                                     <action selector="onClickStop:" destination="dSz-GO-VIB" eventType="touchUpInside" id="4jR-rI-05Z"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play record :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y55-Nm-lFA">
+                                <rect key="frame" x="140.33333333333334" y="348" width="94.666666666666657" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-JX-00r">
+                                <rect key="frame" x="165.66666666666666" y="389" width="44" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="play.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="onClickPlayer:" destination="dSz-GO-VIB" eventType="touchUpInside" id="hoR-sd-W7b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Let-0e-gjl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="okA-1Z-XqZ" firstAttribute="centerX" secondItem="kuS-PW-xmn" secondAttribute="centerX" id="0CE-Ay-XQE"/>
+                            <constraint firstItem="Y55-Nm-lFA" firstAttribute="top" secondItem="okA-1Z-XqZ" secondAttribute="bottom" constant="40" id="7y6-WT-FaL"/>
                             <constraint firstItem="9kW-wv-Drr" firstAttribute="top" secondItem="0mq-Hl-Yhs" secondAttribute="bottom" constant="10" id="CDq-TM-vIT"/>
                             <constraint firstItem="0mq-Hl-Yhs" firstAttribute="top" secondItem="Let-0e-gjl" secondAttribute="top" constant="20" id="Cjq-jh-lgZ"/>
                             <constraint firstItem="9kW-wv-Drr" firstAttribute="centerX" secondItem="kuS-PW-xmn" secondAttribute="centerX" id="dT8-HX-eGW"/>
+                            <constraint firstItem="nhw-JX-00r" firstAttribute="centerX" secondItem="kuS-PW-xmn" secondAttribute="centerX" id="dn4-5c-e0e"/>
                             <constraint firstItem="0mq-Hl-Yhs" firstAttribute="centerX" secondItem="kuS-PW-xmn" secondAttribute="centerX" id="epa-5t-Kth"/>
                             <constraint firstItem="okA-1Z-XqZ" firstAttribute="top" secondItem="mCc-sR-xbo" secondAttribute="bottom" constant="10" id="f1w-st-GCf"/>
                             <constraint firstItem="mCc-sR-xbo" firstAttribute="top" secondItem="9kW-wv-Drr" secondAttribute="bottom" constant="30" id="hOl-WD-aYi"/>
+                            <constraint firstItem="nhw-JX-00r" firstAttribute="top" secondItem="Y55-Nm-lFA" secondAttribute="bottom" constant="20" id="mOK-hy-hYe"/>
                             <constraint firstItem="mCc-sR-xbo" firstAttribute="centerX" secondItem="kuS-PW-xmn" secondAttribute="centerX" id="qF6-yy-kGe"/>
+                            <constraint firstItem="Y55-Nm-lFA" firstAttribute="centerX" secondItem="kuS-PW-xmn" secondAttribute="centerX" id="qlS-3r-lWU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GeH-X6-kvz"/>
                     <connections>
+                        <outlet property="buttonPlayer" destination="nhw-JX-00r" id="sk3-9b-jnj"/>
                         <outlet property="labelRecordingState" destination="0mq-Hl-Yhs" id="jbX-bq-aoS"/>
                         <outlet property="labelRunning" destination="9kW-wv-Drr" id="ELn-ad-DXk"/>
+                        <outlet property="labelTotalDuration" destination="Y55-Nm-lFA" id="7qD-cj-CsZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Og-I5-ksF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -464,6 +484,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="play.fill" catalog="system" width="117" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
