@@ -8,17 +8,26 @@
 import UIKit
 import AVFoundation
 
+enum RecordingState {
+    case initial
+    case recording
+    case pause
+    case resume
+}
+
 class RecordViewController: UIViewController {
     
     @IBOutlet weak var labelRecordingState: UILabel!
     @IBOutlet weak var labelRunning: UILabel!
     @IBOutlet weak var labelTotalDuration: UILabel!
     @IBOutlet weak var buttonPlayer: UIButton!
+    @IBOutlet weak var buttonStart: UIButton!
     
     private var recordingSession: AVAudioSession!
-    private var audioRecorder: AVAudioRecorder!
+    private var audioRecorder: AVAudioRecorder?
     private var player: AVAudioPlayer?
     private var audioFileName: URL!
+    private var recordingState: RecordingState = RecordingState.initial
     
     
     override func viewDidLoad() {
@@ -48,8 +57,10 @@ class RecordViewController: UIViewController {
     }
     
     @IBAction func onClickStop(_ sender: UIButton) {
-        self.audioRecorder.stop()
+        self.audioRecorder?.stop()
         self.audioRecorder = nil
+        self.buttonStart.setTitle("Start", for: .normal)
+        self.recordingState = RecordingState.initial
     }
     
     @IBAction func onClickPlayer(_ sender: UIButton) {
@@ -69,23 +80,34 @@ class RecordViewController: UIViewController {
     }
     
     private func startOrPauseRecording() {
-        print("RecordViewController # Start or Pause Recording")
-        let fileManager = FileManager.default
-        let dirPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        self.audioFileName = dirPath[0].appendingPathComponent("recording.m4a")
-        
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
-        ]
-        do {
-            self.audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
-            self.audioRecorder.delegate = self
-            self.audioRecorder.record()
-        } catch {
-            print("RecordViewController # error start recording \(error)")
+        if recordingState == RecordingState.initial {
+            let fileManager = FileManager.default
+            let dirPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+            self.audioFileName = dirPath[0].appendingPathComponent("recording.m4a")
+            
+            let settings = [
+                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                AVSampleRateKey: 12000,
+                AVNumberOfChannelsKey: 1,
+                AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
+            ]
+            do {
+                self.recordingState = RecordingState.recording
+                self.buttonStart.setTitle("Pause", for: .normal)
+                self.audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
+                self.audioRecorder?.delegate = self
+                self.audioRecorder?.record()
+            } catch {
+                print("RecordViewController # error start recording \(error)")
+            }
+        } else if recordingState == RecordingState.recording || recordingState == RecordingState.resume {
+            self.recordingState = RecordingState.pause
+            self.buttonStart.setTitle("Resume", for: .normal)
+            self.audioRecorder?.pause()
+        } else {
+            self.recordingState = RecordingState.resume
+            self.buttonStart.setTitle("Pause", for: .normal)
+            self.audioRecorder?.record()
         }
     }
     

@@ -357,6 +357,7 @@
                     <navigationItem key="navigationItem" id="GeH-X6-kvz"/>
                     <connections>
                         <outlet property="buttonPlayer" destination="nhw-JX-00r" id="sk3-9b-jnj"/>
+                        <outlet property="buttonStart" destination="mCc-sR-xbo" id="oK6-rc-dAQ"/>
                         <outlet property="labelRecordingState" destination="0mq-Hl-Yhs" id="jbX-bq-aoS"/>
                         <outlet property="labelRunning" destination="9kW-wv-Drr" id="ELn-ad-DXk"/>
                         <outlet property="labelTotalDuration" destination="Y55-Nm-lFA" id="7qD-cj-CsZ"/>
