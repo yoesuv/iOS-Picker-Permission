@@ -29,6 +29,8 @@ class RecordViewController: UIViewController {
     private var audioFileName: URL!
     private var recordingState: RecordingState = RecordingState.initial
     
+    private let strState: String = "Is Recording :"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,7 @@ class RecordViewController: UIViewController {
         
         self.labelTotalDuration.isHidden = true
         self.buttonPlayer.isHidden = true
+        self.labelRecordingState.text = "\(strState) \(recordingState)"
     }
     
     
@@ -61,6 +64,7 @@ class RecordViewController: UIViewController {
         self.audioRecorder = nil
         self.buttonStart.setTitle("Start", for: .normal)
         self.recordingState = RecordingState.initial
+        self.labelRecordingState.text = "\(strState) \(recordingState)"
     }
     
     @IBAction func onClickPlayer(_ sender: UIButton) {
@@ -97,6 +101,7 @@ class RecordViewController: UIViewController {
                 self.audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
                 self.audioRecorder?.delegate = self
                 self.audioRecorder?.record()
+                self.labelRecordingState.text = "\(strState) \(recordingState)"
             } catch {
                 print("RecordViewController # error start recording \(error)")
             }
@@ -104,10 +109,12 @@ class RecordViewController: UIViewController {
             self.recordingState = RecordingState.pause
             self.buttonStart.setTitle("Resume", for: .normal)
             self.audioRecorder?.pause()
+            self.labelRecordingState.text = "\(strState) \(recordingState)"
         } else {
             self.recordingState = RecordingState.resume
             self.buttonStart.setTitle("Pause", for: .normal)
             self.audioRecorder?.record()
+            self.labelRecordingState.text = "\(strState) \(recordingState)"
         }
     }
     
