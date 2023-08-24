@@ -326,7 +326,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-JX-00r">
-                                <rect key="frame" x="165.66666666666666" y="389" width="44" height="35"/>
+                                <rect key="frame" x="165.66666666666666" y="389" width="44" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8w7-SJ-myL"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="play.fill" catalog="system"/>
                                 <connections>

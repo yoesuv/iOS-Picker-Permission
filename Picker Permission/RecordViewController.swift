@@ -17,7 +17,7 @@ class RecordViewController: UIViewController {
     
     private var recordingSession: AVAudioSession!
     private var audioRecorder: AVAudioRecorder!
-    private var player: AVAudioPlayer!
+    private var player: AVAudioPlayer?
     private var audioFileName: URL!
     
     
@@ -53,7 +53,19 @@ class RecordViewController: UIViewController {
     }
     
     @IBAction func onClickPlayer(_ sender: UIButton) {
-        
+        if player?.isPlaying == true {
+            self.buttonPlayer.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            player?.stop()
+        } else {
+            do {
+                try player = AVAudioPlayer(contentsOf: audioFileName, fileTypeHint: AVFileType.m4a.rawValue)
+                player?.delegate = self
+                player?.play()
+                self.buttonPlayer.setImage(UIImage(systemName: "stop.fill"), for: .normal)
+            } catch let error {
+                print("RecordViewController # error \(error.localizedDescription)")
+            }
+        }
     }
     
     private func startOrPauseRecording() {
@@ -85,15 +97,17 @@ extension RecordViewController: AVAudioRecorderDelegate {
         if flag {
             self.labelTotalDuration.isHidden = false
             self.buttonPlayer.isHidden = false
-            do {
-                try player = AVAudioPlayer(contentsOf: audioFileName, fileTypeHint: AVFileType.m4a.rawValue)
-                player.play()
-            } catch let error {
-                print("RecordViewController # error \(error.localizedDescription)")
-            }
         } else {
             print("RecordViewController # error play")
         }
+    }
+    
+}
+
+extension RecordViewController: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.buttonPlayer.setImage(UIImage(systemName: "play.fill"), for: .normal)
     }
     
 }
