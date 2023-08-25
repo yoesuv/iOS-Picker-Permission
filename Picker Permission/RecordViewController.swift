@@ -126,8 +126,21 @@ extension RecordViewController: AVAudioRecorderDelegate {
         if flag {
             self.labelTotalDuration.isHidden = false
             self.buttonPlayer.isHidden = false
+            // record duration
+            do {
+                let p = try AVAudioPlayer(contentsOf: audioFileName, fileTypeHint: AVFileType.m4a.rawValue)
+                let time = NSInteger(p.duration)
+                let ms = Int((p.duration.truncatingRemainder(dividingBy: 1)) * 1000)
+                let seconds = time % 60
+                let minutes = (time / 60) % 60
+                let strDuration = String(format: "%0.2d:%0.2d:%0.3d", minutes, seconds, ms)
+                
+                self.labelTotalDuration.text = "Play record : \(strDuration)"
+            } catch {
+                print("RecordViewController # error get file duration \(error.localizedDescription)")
+            }
         } else {
-            print("RecordViewController # error play")
+            print("RecordViewController # error recording")
         }
     }
     
