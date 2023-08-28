@@ -98,16 +98,7 @@ class RecordViewController: UIViewController {
             let dirPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
             self.audioFileName = dirPath[0].appendingPathComponent("recording.m4a")
             
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
-                self.seconds += 1
-                
-                let sec = self.seconds % 60
-                let min = (self.seconds / 60) % 60
-                let strRunning = String(format: "%0.2d:%0.2d", min, sec)
-                DispatchQueue.main.async {
-                    self.labelRunning.text = strRunning
-                }
-            }
+            self.startOrResumeTimer()
             
             let settings = [
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -130,11 +121,29 @@ class RecordViewController: UIViewController {
             self.buttonStart.setTitle("Resume", for: .normal)
             self.audioRecorder?.pause()
             self.labelRecordingState.text = "\(strState) \(recordingState)"
+            
+            self.timer?.invalidate()
+            self.timer = nil
         } else {
             self.recordingState = RecordingState.resume
             self.buttonStart.setTitle("Pause", for: .normal)
             self.audioRecorder?.record()
             self.labelRecordingState.text = "\(strState) \(recordingState)"
+            
+            self.startOrResumeTimer()
+        }
+    }
+    
+    private func startOrResumeTimer() {
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
+            self.seconds += 1
+            
+            let sec = self.seconds % 60
+            let min = (self.seconds / 60) % 60
+            let strRunning = String(format: "%0.2d:%0.2d", min, sec)
+            DispatchQueue.main.async {
+                self.labelRunning.text = strRunning
+            }
         }
     }
     
