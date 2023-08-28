@@ -31,6 +31,8 @@ class RecordViewController: UIViewController {
     
     private let strState: String = "Is Recording :"
     
+    private var timer: Timer?
+    private var seconds = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +67,8 @@ class RecordViewController: UIViewController {
         self.buttonStart.setTitle("Start", for: .normal)
         self.recordingState = RecordingState.initial
         self.labelRecordingState.text = "\(strState) \(recordingState)"
+        
+        self.timer?.invalidate()
     }
     
     @IBAction func onClickPlayer(_ sender: UIButton) {
@@ -85,9 +89,25 @@ class RecordViewController: UIViewController {
     
     private func startOrPauseRecording() {
         if recordingState == RecordingState.initial {
+            self.seconds = 0
+            DispatchQueue.main.async {
+                self.labelRunning.text = "00:00"
+            }
+            
             let fileManager = FileManager.default
             let dirPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
             self.audioFileName = dirPath[0].appendingPathComponent("recording.m4a")
+            
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
+                self.seconds += 1
+                
+                let sec = self.seconds % 60
+                let min = (self.seconds / 60) % 60
+                let strRunning = String(format: "%0.2d:%0.2d", min, sec)
+                DispatchQueue.main.async {
+                    self.labelRunning.text = strRunning
+                }
+            }
             
             let settings = [
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
