@@ -18,31 +18,38 @@ class LocationViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Location"
         self.labelLatLng.text = ""
-        
-        self.locationManager.delegate = self
     }
     
     
     @IBAction func clickGetLocation(_ sender: UIButton) {
         switch locationManager.authorizationStatus {
         case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            print("Restricted")
-        case .denied:
-            print("Denied")
-        case .authorizedWhenInUse:
-            if CLLocationManager.locationServicesEnabled() {
-                locationManager.startUpdatingLocation()
-            }
+            self.locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            print("LocationViewController # Restricted or Denied")
+        case .authorizedWhenInUse, .authorizedAlways:
+            self.checkServiceLocation()
         default:
-            print("Default")
+            print("LocationViewController # Default")
+        }
+    }
+    
+    private func checkServiceLocation() {
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.delegate = self
+                self.locationManager.startUpdatingLocation()
+            }
         }
     }
     
 }
 
 extension LocationViewController: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        self.checkServiceLocation()
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
