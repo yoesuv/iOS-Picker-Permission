@@ -22,9 +22,11 @@ class CameraViewController: UIViewController {
     @IBAction func clickOpenCamera(_ sender: UIButton) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) { access in
+            AVCaptureDevice.requestAccess(for: .video) { [weak self] access in
                 if access {
-                    self.openCamera()
+                    DispatchQueue.main.async {
+                        self?.openCamera()
+                    }
                 }
             }
         case .restricted:

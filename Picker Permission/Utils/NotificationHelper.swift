@@ -8,7 +8,7 @@
 import Foundation
 import UserNotifications
 
-extension UNAuthorizationStatus : CustomStringConvertible {
+extension UNAuthorizationStatus : @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .notDetermined:
