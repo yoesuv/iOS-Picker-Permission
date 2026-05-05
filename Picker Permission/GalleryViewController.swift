@@ -36,19 +36,19 @@ extension GalleryViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true, completion: .none)
         if let result = results.first {
             // load image
-            result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] reading, error in
                 if error == nil {
                     guard let image = reading as? UIImage else { return }
                     DispatchQueue.main.async {
-                        self.imageViewGallery.image = image
+                        self?.imageViewGallery.image = image
                     }
                 }
             }
             // load path
-            result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { url, error in
+            result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { [weak self] url, error in
                 if (error == nil) {
                     DispatchQueue.main.async {
-                        self.labelPath.text = url?.absoluteString
+                        self?.labelPath.text = url?.absoluteString
                     }
                 }
             }

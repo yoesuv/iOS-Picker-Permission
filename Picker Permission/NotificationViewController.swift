@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import UserNotifications
+@preconcurrency import UserNotifications
 
 class NotificationViewController: UIViewController, UNUserNotificationCenterDelegate {
     
@@ -22,28 +22,42 @@ class NotificationViewController: UIViewController, UNUserNotificationCenterDele
     }
 
     @IBAction func clickLocalNotification(_ sender: UIButton) {
-        notification.getNotificationSettings { setting in
+        notification.getNotificationSettings { [weak self] setting in
             switch setting.authorizationStatus {
             case .notDetermined:
                 print("not determined")
-                self.notification.requestAuthorization(options: [.sound, .alert, .badge]) { isAllow, error in
-                    self.showPermissionStatus()
-                    if (isAllow) {
-                        self.showNotification()
+                UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert, .badge]) { isAllow, error in
+                    DispatchQueue.main.async {
+                        self?.showPermissionStatus()
+                    }
+                    if isAllow {
+                        DispatchQueue.main.async {
+                            self?.showNotification()
+                        }
                     }
                 }
             case .denied:
                 print("denied")
-                self.showPermissionStatus()
+                DispatchQueue.main.async {
+                    self?.showPermissionStatus()
+                }
             case .authorized:
                 print("authorized")
-                self.showPermissionStatus()
-                self.showNotification()
+                DispatchQueue.main.async {
+                    self?.showPermissionStatus()
+                }
+                DispatchQueue.main.async {
+                    self?.showNotification()
+                }
             case .provisional:
-                self.showPermissionStatus()
+                DispatchQueue.main.async {
+                    self?.showPermissionStatus()
+                }
                 print("provisional")
             default:
-                self.showPermissionStatus()
+                DispatchQueue.main.async {
+                    self?.showPermissionStatus()
+                }
                 print("default")
                 return
             }
@@ -53,28 +67,42 @@ class NotificationViewController: UIViewController, UNUserNotificationCenterDele
     
     
     @IBAction func clickScheduleNotification(_ sender: UIButton) {
-        notification.getNotificationSettings { setting in
+        notification.getNotificationSettings { [weak self] setting in
             switch setting.authorizationStatus {
             case .notDetermined:
                 print("not determined")
-                self.notification.requestAuthorization(options: [.sound, .alert, .badge]) { isAllow, error in
-                    self.showPermissionStatus()
-                    if (isAllow) {
-                        self.showScheduledNotification()
+                UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert, .badge]) { isAllow, error in
+                    DispatchQueue.main.async {
+                        self?.showPermissionStatus()
+                    }
+                    if isAllow {
+                        DispatchQueue.main.async {
+                            self?.showScheduledNotification()
+                        }
                     }
                 }
             case .denied:
                 print("denied")
-                self.showPermissionStatus()
+                DispatchQueue.main.async {
+                    self?.showPermissionStatus()
+                }
             case .authorized:
                 print("authorized")
-                self.showPermissionStatus()
-                self.showScheduledNotification()
+                DispatchQueue.main.async {
+                    self?.showPermissionStatus()
+                }
+                DispatchQueue.main.async {
+                    self?.showScheduledNotification()
+                }
             case .provisional:
-                self.showPermissionStatus()
+                DispatchQueue.main.async {
+                    self?.showPermissionStatus()
+                }
                 print("provisional")
             default:
-                self.showPermissionStatus()
+                DispatchQueue.main.async {
+                    self?.showPermissionStatus()
+                }
                 print("default")
                 return
             }
@@ -82,10 +110,10 @@ class NotificationViewController: UIViewController, UNUserNotificationCenterDele
     }
     
     private func showPermissionStatus() {
-        notification.getNotificationSettings { setting in
+        notification.getNotificationSettings { [weak self] setting in
             let desc = setting.authorizationStatus.description
             DispatchQueue.main.async {
-                self.labelPermission.text = "Notification Permission : \(desc)"
+                self?.labelPermission.text = "Notification Permission : \(desc)"
             }
         }
     }

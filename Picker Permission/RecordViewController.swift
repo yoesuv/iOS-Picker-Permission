@@ -23,7 +23,6 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var buttonPlayer: UIButton!
     @IBOutlet weak var buttonStart: UIButton!
     
-    private var recordingSession: AVAudioSession!
     private var audioRecorder: AVAudioRecorder?
     private var player: AVAudioPlayer?
     private var audioFileName: URL!
@@ -47,9 +46,11 @@ class RecordViewController: UIViewController {
     @IBAction func onClickStart(_ sender: UIButton) {
         switch AVCaptureDevice.authorizationStatus(for: .audio) {
         case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .audio) { access in
+            AVCaptureDevice.requestAccess(for: .audio) { [weak self] access in
                 if access {
-                    self.startOrPauseRecording()
+                    DispatchQueue.main.async {
+                        self?.startOrPauseRecording()
+                    }
                 }
             }
         case .authorized:
@@ -100,13 +101,17 @@ class RecordViewController: UIViewController {
             
             self.startOrResumeTimer()
             
-            let settings = [
+            let settings: [String: Any] = [
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                AVSampleRateKey: 12000,
+                AVSampleRateKey: 44100,
                 AVNumberOfChannelsKey: 1,
                 AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
             ]
             do {
+                let audioSession = AVAudioSession.sharedInstance()
+                try audioSession.setCategory(.playAndRecord, mode: .default)
+                try audioSession.setActive(true)
+                
                 self.recordingState = RecordingState.recording
                 self.buttonStart.setTitle("Pause", for: .normal)
                 self.audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
@@ -135,21 +140,21 @@ class RecordViewController: UIViewController {
     }
     
     private func startOrResumeTimer() {
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
-            self.seconds += 1
-            
-            let sec = self.seconds % 60
-            let min = (self.seconds / 60) % 60
-            let strRunning = String(format: "%0.2d:%0.2d", min, sec)
-            DispatchQueue.main.async {
-                self.labelRunning.text = strRunning
-            }
-        }
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func updateTimer() {
+        self.seconds += 1
+        
+        let sec = self.seconds % 60
+        let min = (self.seconds / 60) % 60
+        let strRunning = String(format: "%0.2d:%0.2d", min, sec)
+        self.labelRunning.text = strRunning
     }
     
 }
 
-extension RecordViewController: AVAudioRecorderDelegate {
+extension RecordViewController: @preconcurrency AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
@@ -158,6 +163,7 @@ extension RecordViewController: AVAudioRecorderDelegate {
             // record duration
             do {
                 let p = try AVAudioPlayer(contentsOf: audioFileName, fileTypeHint: AVFileType.m4a.rawValue)
+                p.prepareToPlay()
                 let time = NSInteger(p.duration)
                 let ms = Int((p.duration.truncatingRemainder(dividingBy: 1)) * 1000)
                 let seconds = time % 60
@@ -175,7 +181,7 @@ extension RecordViewController: AVAudioRecorderDelegate {
     
 }
 
-extension RecordViewController: AVAudioPlayerDelegate {
+extension RecordViewController: @preconcurrency AVAudioPlayerDelegate {
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         self.buttonPlayer.setImage(UIImage(systemName: "play.fill"), for: .normal)

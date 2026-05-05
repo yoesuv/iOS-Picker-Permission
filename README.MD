@@ -1,10 +1,23 @@
-## iOS Picker & Permissions ##
+## iOS Picker & Permissions
 
-#### Screenshot ####
-| ![](https://i.imgur.com/2wheBt5.png) | ![](https://i.imgur.com/2nxwd8O.png) | ![](https://i.imgur.com/t73vPZl.png) | ![](https://images2.imgbox.com/46/36/OiZbXx2t_o.png) |
-| :---: | :---: | :---: | :---: |
-| ![](https://images2.imgbox.com/94/46/XLgOC1V9_o.png) | ![](https://images2.imgbox.com/21/71/6ZYKjKeF_o.png) | ![](https://images2.imgbox.com/52/42/SGxpHtqY_o.png) | ![](https://i.imgur.com/QUNeZ66.png) |
-| ![](https://images2.imgbox.com/52/8e/ysEUlx3J_o.png) | ![](https://i.imgur.com/ocPBIZA.png) | ![](https://i.imgur.com/HNJaa3E.png) | ![](https://images2.imgbox.com/72/aa/2sG6tNoI_o.png) |
+A reference iOS app demonstrating system pickers and runtime permission requests using Swift and UIKit.
 
-#### References ####
+**Features:**
+
+- Gallery Picker — photo selection via `PHPickerViewController`
+- Camera Permission — runtime authorization check for camera access
+- File Picker — document selection via `UIDocumentPickerViewController`
+- Location Permission — "when in use" location access with `CLLocationManager`
+- Audio Recording — microphone permission, record/pause/resume/playback with `AVAudioRecorder` & `AVAudioPlayer`
+- Local Notifications — immediate and scheduled notifications via `UNUserNotificationCenter`
+
+#### Screenshot
+
+| ![](https://i.imgur.com/Kbx4iPl.png) | ![](https://i.imgur.com/z3QJd6u.png) | ![](https://i.imgur.com/0Qw3cvH.png) | ![](https://i.imgur.com/gQF3vcL.png) |
+| :----------------------------------: | :----------------------------------: | :----------------------------------: | :----------------------------------: |
+| ![](https://i.imgur.com/hrLbfuI.png) | ![](https://i.imgur.com/2ZZc2ab.png) | ![](https://i.imgur.com/kqCa2cA.png) | ![](https://i.imgur.com/vRknshW.png) |
+| ![](https://i.imgur.com/YW1m4kg.png) | ![](https://i.imgur.com/xjvjrSI.png) | ![](https://i.imgur.com/aJGZHMY.png) | ![](https://i.imgur.com/eMzaJXX.png) |
+
+#### References
+
 - [Local Push Notification](https://www.youtube.com/watch?v=dxe86OWc2mI)
